@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode rightKey = KeyCode.D;
     public KeyCode sprintKey = KeyCode.LeftShift;
 
+    public bool enableSprint = true;
+
     public bool enableDelay = true;
     public float delay = 1f;
     public float chargeSpeed = 1f;
@@ -57,10 +59,7 @@ public class PlayerMovement : MonoBehaviour
             string directionLabel = directionKeyCode.ToString();
             velocityDir = HandleDirection(velocityDir, directionKeyCode, keyCode2VectorMap[directionLabel]);
         }
-        if (Input.GetKey(sprintKey))
-        {
-            velocityMag = sprint;
-        }
+        velocityMag = HandleSprint(velocityMag);
         rb.velocity = new Vector3(velocityDir.x, 0, velocityDir.z).normalized * velocityMag + Vector3.up * rb.velocity.y;
     }
 
@@ -73,6 +72,15 @@ public class PlayerMovement : MonoBehaviour
             velocityDir += referenceDirection;
         }
         return velocityDir;
+    }
+
+    private float HandleSprint(float velocityMag)
+    {
+        if (Input.GetKey(sprintKey) && enableSprint)
+        {
+            velocityMag = sprint;
+        }
+        return velocityMag;
     }
 
     private void Update()
