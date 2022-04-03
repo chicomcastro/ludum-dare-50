@@ -327,8 +327,8 @@ MonoBehaviour:
   downKey: 115
   rightKey: 100
   sprintKey: 304
-  speed: 5
-  sprint: 15
+  speed: 8
+  sprint: 12
 --- !u!1001 &423276962
 PrefabInstance:
   m_ObjectHideFlags: 0
