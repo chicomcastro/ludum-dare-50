@@ -10,29 +10,36 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode leftKey = KeyCode.A;
     public KeyCode downKey = KeyCode.S;
     public KeyCode rightKey = KeyCode.D;
+    public KeyCode sprintKey = KeyCode.LeftShift;
 
     public float speed = 5f;
+    public float sprint = 15f;
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector3 velocity = Vector3.zero;
+        Vector3 velocityDir = Vector3.zero;
+        float velocityMag = speed;
         if (Input.GetKey(upKey))
         {
-            velocity += Vector3.forward;
+            velocityDir += Vector3.forward;
         }
         if (Input.GetKey(leftKey))
         {
-            velocity += Vector3.left;
+            velocityDir += Vector3.left;
         }
         if (Input.GetKey(downKey))
         {
-            velocity += Vector3.back;
+            velocityDir += Vector3.back;
         }
         if (Input.GetKey(rightKey))
         {
-            velocity += Vector3.right;
+            velocityDir += Vector3.right;
         }
-        rb.velocity = new Vector3(velocity.x, 0, velocity.z).normalized * speed + Vector3.up * rb.velocity.y;
+        if (Input.GetKey(sprintKey))
+        {
+            velocityMag = sprint;
+        }
+        rb.velocity = new Vector3(velocityDir.x, 0, velocityDir.z).normalized * velocityMag + Vector3.up * rb.velocity.y;
     }
 }
