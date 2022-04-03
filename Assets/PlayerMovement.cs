@@ -28,14 +28,32 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 5f;
     public float sprint = 15f;
 
+    private List<KeyCode> directionKeyCodes;
+    private List<Vector3> directionVectors;
+
+    private void Start()
+    {
+        directionKeyCodes = new List<KeyCode>();
+        directionKeyCodes.Add(upKey);
+        directionKeyCodes.Add(leftKey);
+        directionKeyCodes.Add(downKey);
+        directionKeyCodes.Add(rightKey);
+
+        directionVectors = new List<Vector3>();
+        directionVectors.Add(Vector3.forward);
+        directionVectors.Add(Vector3.left);
+        directionVectors.Add(Vector3.back);
+        directionVectors.Add(Vector3.right);
+    }
+
     void FixedUpdate()
     {
         Vector3 velocityDir = Vector3.zero;
         float velocityMag = speed;
-        velocityDir = HandleDirection(velocityDir, upKey, Vector3.forward);
-        velocityDir = HandleDirection(velocityDir, leftKey, Vector3.left);
-        velocityDir = HandleDirection(velocityDir, downKey, Vector3.back);
-        velocityDir = HandleDirection(velocityDir, rightKey, Vector3.right);
+        for (int i = 0; i < directionKeyCodes.Count; i++)
+        {
+            velocityDir = HandleDirection(velocityDir, directionKeyCodes[i], directionVectors[i]);
+        }
         if (Input.GetKey(sprintKey))
         {
             velocityMag = sprint;
