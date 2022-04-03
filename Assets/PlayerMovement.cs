@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
@@ -27,6 +28,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        if (controllerKeys.Length < 5)
+        {
+            throw new Exception("There's no enought controller keys registered");
+        }
+
         keyCode2VectorMap.Add(KeyLabel.up.ToString(), Vector3.forward);
         keyCode2VectorMap.Add(KeyLabel.left.ToString(), Vector3.left);
         keyCode2VectorMap.Add(KeyLabel.down.ToString(), Vector3.back);
@@ -49,12 +55,18 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 velocityDir = Vector3.zero;
         float velocityMag = speed;
+        velocityDir = HandleMovement(velocityDir);
+        velocityMag = HandleSprint(velocityMag);
+        rb.velocity = new Vector3(velocityDir.x, 0, velocityDir.z).normalized * velocityMag + Vector3.up * rb.velocity.y;
+    }
+
+    private Vector3 HandleMovement(Vector3 velocityDir)
+    {
         controllerKeys.ToList().ForEach(controllerKey => {
             string keyLabel = controllerKey.keyLabel.ToString();
             velocityDir = HandleDirection(velocityDir, controllerKey.keyCode, controllerKey.direction);
         });
-        velocityMag = HandleSprint(velocityMag);
-        rb.velocity = new Vector3(velocityDir.x, 0, velocityDir.z).normalized * velocityMag + Vector3.up * rb.velocity.y;
+        return velocityDir;
     }
 
     private Vector3 HandleDirection(Vector3 velocityDir, KeyCode keyCode, Vector3 referenceDirection)
