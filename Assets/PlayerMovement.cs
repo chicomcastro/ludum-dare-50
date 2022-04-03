@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -23,10 +24,20 @@ public class PlayerMovement : MonoBehaviour
     public float delay = 1f;
     public float chargeSpeed = 1f;
 
+    [HideInInspector]    
+    public bool delayUp = true;
+    [HideInInspector]    
+    public bool delayLeft = true;
+    [HideInInspector]    
+    public bool delayDown = true;
+    [HideInInspector]
+    public bool delayRight = true;
+
     private Dictionary<string, float> delayLevel = new Dictionary<string, float>();
     private List<KeyCode> directionKeyCodes;
     private Dictionary<string, KeyCode> directionKeyCodesMap = new Dictionary<string, KeyCode>();
     private Dictionary<string, Vector3> keyCode2VectorMap = new Dictionary<string, Vector3>();
+    private Dictionary<string, bool> keyCode2DelayStatus = new Dictionary<string, bool>();
 
     private void Start()
     {
@@ -115,5 +126,22 @@ public class PlayerMovement : MonoBehaviour
         }
         delayLevel[directionLabel] = Mathf.Min(1f, delayLevel[directionLabel] + Time.deltaTime * chargeSpeed);
         print(directionLabel + delayLevel[directionLabel]);
+    }
+}
+
+[CustomEditor(typeof(PlayerMovement))]
+public class PlayerMovementEditor : Editor
+{
+    override public void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+        var myScript = target as PlayerMovement;
+        if (myScript.enableDelay)
+        {
+            myScript.delayUp = GUILayout.Toggle(myScript.delayUp, "Delay Up");
+            myScript.delayLeft = GUILayout.Toggle(myScript.delayLeft, "Delay Left");
+            myScript.delayDown = GUILayout.Toggle(myScript.delayDown, "Delay Down");
+            myScript.delayRight = GUILayout.Toggle(myScript.delayRight, "Delay Right");
+        }
     }
 }
