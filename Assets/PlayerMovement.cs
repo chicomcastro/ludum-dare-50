@@ -22,21 +22,25 @@ public class PlayerMovement : MonoBehaviour
     public float sprint = 15f;
 
     private List<KeyCode> directionKeyCodes;
-    private List<Vector3> directionVectors;
+    private Dictionary<string, KeyCode> directionKeyCodesMap = new Dictionary<string, KeyCode>();
+    private Dictionary<string, Vector3> keyCode2VectorMap = new Dictionary<string, Vector3>();
 
     private void Start()
     {
-        directionKeyCodes = new List<KeyCode>();
-        directionKeyCodes.Add(upKey);
-        directionKeyCodes.Add(leftKey);
-        directionKeyCodes.Add(downKey);
-        directionKeyCodes.Add(rightKey);
+        directionKeyCodes = new List<KeyCode>
+        {
+            upKey,
+            leftKey,
+            downKey,
+            rightKey
+        };
 
-        directionVectors = new List<Vector3>();
-        directionVectors.Add(Vector3.forward);
-        directionVectors.Add(Vector3.left);
-        directionVectors.Add(Vector3.back);
-        directionVectors.Add(Vector3.right);
+        directionKeyCodes.ForEach(keyCode => directionKeyCodesMap.Add(keyCode.ToString(), keyCode));
+
+        keyCode2VectorMap.Add(upKey.ToString(), Vector3.forward);
+        keyCode2VectorMap.Add(leftKey.ToString(), Vector3.left);
+        keyCode2VectorMap.Add(downKey.ToString(), Vector3.back);
+        keyCode2VectorMap.Add(rightKey.ToString(), Vector3.right);
     }
 
     void FixedUpdate()
@@ -45,7 +49,9 @@ public class PlayerMovement : MonoBehaviour
         float velocityMag = speed;
         for (int i = 0; i < directionKeyCodes.Count; i++)
         {
-            velocityDir = HandleDirection(velocityDir, directionKeyCodes[i], directionVectors[i]);
+            KeyCode directionKeyCode = directionKeyCodes[i];
+            string directionLabel = directionKeyCode.ToString();
+            velocityDir = HandleDirection(velocityDir, directionKeyCode, keyCode2VectorMap[directionLabel]);
         }
         if (Input.GetKey(sprintKey))
         {
