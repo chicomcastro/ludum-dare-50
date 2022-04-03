@@ -12,6 +12,19 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode rightKey = KeyCode.D;
     public KeyCode sprintKey = KeyCode.LeftShift;
 
+    public bool enableDelay = true;
+    public float upDelay = 1f;
+    public float leftDelay = 1f;
+    public float downDelay = 1f;
+    public float rightDelay = 1f;
+    public float sprintDelay = 1f;
+
+    private float upLevel = 0f;
+    private float leftLevel = 0f;
+    private float downLevel = 0f;
+    private float rightLevel = 0f;
+    private float sprintLevel = 0f;
+
     public float speed = 5f;
     public float sprint = 15f;
 
@@ -38,9 +51,17 @@ public class PlayerMovement : MonoBehaviour
         }
         return velocityDir;
     }
+
+    private void Update()
+    {
+        HandleDelay();
+    }
+
+    private void HandleDelay()
+    {
+        if (!enableDelay)
         {
-            velocityMag = sprint;
+            return;
         }
-        rb.velocity = new Vector3(velocityDir.x, 0, velocityDir.z).normalized * velocityMag + Vector3.up * rb.velocity.y;
     }
 }
