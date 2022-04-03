@@ -120,7 +120,6 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         delayLevel[keyLabel] = Mathf.Min(1f, delayLevel[keyLabel] + Time.deltaTime * chargeSpeed);
-        print(controllerKey.keyCode.ToString() + delayLevel[keyLabel]);
     }
 }
 
