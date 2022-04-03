@@ -15,28 +15,29 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 5f;
     public float sprint = 15f;
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         Vector3 velocityDir = Vector3.zero;
         float velocityMag = speed;
-        if (Input.GetKey(upKey))
-        {
-            velocityDir += Vector3.forward;
-        }
-        if (Input.GetKey(leftKey))
-        {
-            velocityDir += Vector3.left;
-        }
-        if (Input.GetKey(downKey))
-        {
-            velocityDir += Vector3.back;
-        }
-        if (Input.GetKey(rightKey))
-        {
-            velocityDir += Vector3.right;
-        }
+        velocityDir = HandleDirection(velocityDir, upKey, Vector3.forward);
+        velocityDir = HandleDirection(velocityDir, leftKey, Vector3.left);
+        velocityDir = HandleDirection(velocityDir, downKey, Vector3.back);
+        velocityDir = HandleDirection(velocityDir, rightKey, Vector3.right);
         if (Input.GetKey(sprintKey))
+        {
+            velocityMag = sprint;
+        }
+        rb.velocity = new Vector3(velocityDir.x, 0, velocityDir.z).normalized * velocityMag + Vector3.up * rb.velocity.y;
+    }
+
+    private Vector3 HandleDirection(Vector3 velocityDir, KeyCode keyCode, Vector3 referenceDirection)
+    {
+        if (Input.GetKey(keyCode))
+        {
+            velocityDir += referenceDirection;
+        }
+        return velocityDir;
+    }
         {
             velocityMag = sprint;
         }
