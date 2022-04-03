@@ -64,18 +64,20 @@ public class PlayerMovement : MonoBehaviour
     {
         controllerKeys.ToList().ForEach(controllerKey => {
             string keyLabel = controllerKey.keyLabel.ToString();
-            velocityDir = HandleDirection(velocityDir, controllerKey.keyCode, controllerKey.direction);
+            velocityDir = HandleDirection(velocityDir, controllerKey);
         });
         return velocityDir;
     }
 
-    private Vector3 HandleDirection(Vector3 velocityDir, KeyCode keyCode, Vector3 referenceDirection)
+    private Vector3 HandleDirection(Vector3 velocityDir, ControllerKey controllerKey)
     {
-        string directionLabel = keyCode.ToString();
-        bool canMoveThisDirection = enableDelay ? delayLevel[directionLabel] >= delay : true;
+        KeyCode keyCode = controllerKey.keyCode;
+        string directionLabel = controllerKey.keyLabel.ToString();
+        bool movementValidation = enableDelay && controllerKey.delayEnabled;
+        bool canMoveThisDirection = movementValidation ? delayLevel[directionLabel] >= delay : true;
         if (Input.GetKey(keyCode) && canMoveThisDirection)
         {
-            velocityDir += referenceDirection;
+            velocityDir += controllerKey.direction;
         }
         return velocityDir;
     }

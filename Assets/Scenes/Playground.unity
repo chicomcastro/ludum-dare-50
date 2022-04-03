@@ -346,7 +346,7 @@ MonoBehaviour:
   speed: 8
   enableSprint: 1
   sprint: 12
-  enableDelay: 0
+  enableDelay: 1
   delay: 1
   chargeSpeed: 1
 --- !u!1001 &423276962
