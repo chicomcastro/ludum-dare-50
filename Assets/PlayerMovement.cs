@@ -13,17 +13,10 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode sprintKey = KeyCode.LeftShift;
 
     public bool enableDelay = true;
-    public float upDelay = 1f;
-    public float leftDelay = 1f;
-    public float downDelay = 1f;
-    public float rightDelay = 1f;
-    public float sprintDelay = 1f;
+    public float delay = 1f;
+    public float chargeSpeed = 1f;
 
-    private float upLevel = 0f;
-    private float leftLevel = 0f;
-    private float downLevel = 0f;
-    private float rightLevel = 0f;
-    private float sprintLevel = 0f;
+    private Dictionary<string, float> delayLevel = new Dictionary<string, float>();
 
     public float speed = 5f;
     public float sprint = 15f;
@@ -81,5 +74,21 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
+        directionKeyCodes.ForEach(keyCode => ChargeDirection(keyCode));
+    }
+
+    private void ChargeDirection(KeyCode keyCode)
+    {
+        string directionLabel = keyCode.ToString();
+        if (!delayLevel.ContainsKey(directionLabel))
+        {
+            delayLevel.Add(directionLabel, 0f);
+        }
+        if (delayLevel[directionLabel] > delay)
+        {
+            return;
+        }
+        delayLevel[directionLabel] = Mathf.Min(1f, delayLevel[directionLabel] + Time.deltaTime * chargeSpeed);
+        print(directionLabel + delayLevel[directionLabel]);
     }
 }
