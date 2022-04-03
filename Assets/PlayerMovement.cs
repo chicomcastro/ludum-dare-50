@@ -35,7 +35,11 @@ public class PlayerMovement : MonoBehaviour
             rightKey
         };
 
-        directionKeyCodes.ForEach(keyCode => directionKeyCodesMap.Add(keyCode.ToString(), keyCode));
+        directionKeyCodes.ForEach(keyCode => {
+            string directionLabel = keyCode.ToString();
+            directionKeyCodesMap.Add(directionLabel, keyCode);
+            delayLevel.Add(directionLabel, 0f);
+        });
 
         keyCode2VectorMap.Add(upKey.ToString(), Vector3.forward);
         keyCode2VectorMap.Add(leftKey.ToString(), Vector3.left);
@@ -62,7 +66,9 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 HandleDirection(Vector3 velocityDir, KeyCode keyCode, Vector3 referenceDirection)
     {
-        if (Input.GetKey(keyCode))
+        string directionLabel = keyCode.ToString();
+        bool canMoveThisDirection = enableDelay ? delayLevel[directionLabel] >= delay : true;
+        if (Input.GetKey(keyCode) && canMoveThisDirection)
         {
             velocityDir += referenceDirection;
         }
@@ -86,11 +92,15 @@ public class PlayerMovement : MonoBehaviour
     private void ChargeDirection(KeyCode keyCode)
     {
         string directionLabel = keyCode.ToString();
-        if (!delayLevel.ContainsKey(directionLabel))
+
+        KeyCode directionKeyCode = directionKeyCodesMap[directionLabel];
+        if (!Input.GetKey(directionKeyCode))
         {
-            delayLevel.Add(directionLabel, 0f);
+            delayLevel[directionLabel] = 0f;
+            return;
         }
-        if (delayLevel[directionLabel] > delay)
+
+        if (delayLevel[directionLabel] >= delay)
         {
             return;
         }
