@@ -322,13 +322,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 200133933}
-  upKey: 119
-  leftKey: 97
-  downKey: 115
-  rightKey: 100
-  sprintKey: 304
+  controllerKeys:
+  - keyLabel: 0
+    keyCode: 119
+    delayEnabled: 0
+    direction: {x: 0, y: 0, z: 0}
+  - keyLabel: 1
+    keyCode: 97
+    delayEnabled: 0
+    direction: {x: 0, y: 0, z: 0}
+  - keyLabel: 2
+    keyCode: 115
+    delayEnabled: 0
+    direction: {x: 0, y: 0, z: 0}
+  - keyLabel: 3
+    keyCode: 100
+    delayEnabled: 0
+    direction: {x: 0, y: 0, z: 0}
+  - keyLabel: 4
+    keyCode: 304
+    delayEnabled: 0
+    direction: {x: 0, y: 0, z: 0}
   speed: 8
+  enableSprint: 1
   sprint: 12
+  enableDelay: 0
+  delay: 1
+  chargeSpeed: 1
 --- !u!1001 &423276962
 PrefabInstance:
   m_ObjectHideFlags: 0
