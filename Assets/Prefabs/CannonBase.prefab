@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 8068314877562402802}
   - component: {fileID: 8068314877562402803}
   - component: {fileID: 8068314877562402800}
+  - component: {fileID: 2007758674}
   m_Layer: 0
   m_Name: CannonBase
   m_TagString: Untagged
@@ -118,8 +119,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8068314877562402801}
-  m_LocalRotation: {x: 0.00000006238465, y: -0.00000007480005, z: -0.0000000135041756,
-    w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.0000002, y: 0.73554903, z: -3.5117185}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -202,6 +202,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2007758674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8068314877562402801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4407e87bf26be9941bdc6d9a6c453f12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 7067775105496255710, guid: 56b4816f5d198044c90ffbcf95cc03ff,
+    type: 3}
+  spawnSpot: {fileID: 8068314878203805100}
+  initialDelay: 1
+  shootPeriod: 1
 --- !u!1 &8068314877624883922
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,7 +411,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8068314878203805100}
   m_Layer: 0
-  m_Name: ShootSpot
+  m_Name: BulletSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

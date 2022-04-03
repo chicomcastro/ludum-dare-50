@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 200133937}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -229,7 +229,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 200133931}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalPosition: {x: 1.48, y: 0.82, z: 1.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -700,6 +700,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CannonLight
+      objectReference: {fileID: 0}
+    - target: {fileID: 6382870832841749149, guid: 98f063d666af92748b6d738d0d33af97,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98f063d666af92748b6d738d0d33af97, type: 3}
