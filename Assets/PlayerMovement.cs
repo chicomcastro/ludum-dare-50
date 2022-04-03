@@ -6,23 +6,24 @@ public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody rb;
 
+    [Header("Controller Keys")]
     public KeyCode upKey = KeyCode.W;
     public KeyCode leftKey = KeyCode.A;
     public KeyCode downKey = KeyCode.S;
     public KeyCode rightKey = KeyCode.D;
     public KeyCode sprintKey = KeyCode.LeftShift;
 
+    [Header("Movement")]
+    public float speed = 5f;
     public bool enableSprint = true;
+    public float sprint = 15f;
 
+    [Header("Delay mechanic")]
     public bool enableDelay = true;
     public float delay = 1f;
     public float chargeSpeed = 1f;
 
     private Dictionary<string, float> delayLevel = new Dictionary<string, float>();
-
-    public float speed = 5f;
-    public float sprint = 15f;
-
     private List<KeyCode> directionKeyCodes;
     private Dictionary<string, KeyCode> directionKeyCodesMap = new Dictionary<string, KeyCode>();
     private Dictionary<string, Vector3> keyCode2VectorMap = new Dictionary<string, Vector3>();
