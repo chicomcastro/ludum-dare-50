@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -26,6 +27,9 @@ public class PlayerMovement : MonoBehaviour
     private Dictionary<string, Vector3> keyCode2VectorMap = new Dictionary<string, Vector3>();
     private Dictionary<string, ControllerKey> controllerKeyMap = new Dictionary<string, ControllerKey>();
 
+    private Vector3 targetVelocity;
+    private float targetSpeed;
+
     private void Start()
     {
         if (controllerKeys.Length < 5)
@@ -47,17 +51,19 @@ public class PlayerMovement : MonoBehaviour
                 controllerKey.direction = keyCode2VectorMap[keyLabel];
             }
 
+            if (controllerKey.slider != null)
+            {
+                controllerKey.slider.gameObject.SetActive(false);
+            }
+
             delayLevel.Add(keyLabel, 0f);
         });
     }
 
     void FixedUpdate()
     {
-        Vector3 velocityDir = Vector3.zero;
-        float velocityMag = speed;
-        velocityDir = HandleMovement(velocityDir);
-        velocityMag = HandleSprint(velocityMag);
-        rb.velocity = new Vector3(velocityDir.x, 0, velocityDir.z).normalized * velocityMag + Vector3.up * rb.velocity.y;
+        //targetVelocity = Vector3.zero;
+        rb.velocity = new Vector3(targetVelocity.x, 0, targetVelocity.z).normalized * targetSpeed + Vector3.up * rb.velocity.y;
     }
 
     private Vector3 HandleMovement(Vector3 velocityDir)
@@ -79,6 +85,13 @@ public class PlayerMovement : MonoBehaviour
         {
             velocityDir += controllerKey.direction;
         }
+        if (Input.GetKeyUp(keyCode))
+        {
+            if (controllerKey.slider != null)
+            {
+                controllerKey.slider.value = 0f;
+            }
+        }
         return velocityDir;
     }
 
@@ -95,6 +108,17 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         HandleDelay();
+        HandleInput();
+    }
+
+    private void HandleInput()
+    {
+        Vector3 velocityDir = Vector3.zero;
+        float velocityMag = speed;
+        velocityDir = HandleMovement(velocityDir);
+        velocityMag = HandleSprint(velocityMag);
+        targetVelocity = velocityDir;
+        targetSpeed = velocityMag;
     }
 
     private void HandleDelay()
@@ -120,12 +144,20 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         delayLevel[keyLabel] = Mathf.Min(1f, delayLevel[keyLabel] + Time.deltaTime * chargeSpeed);
+        if (controllerKey.slider != null)
+        {
+            controllerKey.slider.value = delayLevel[keyLabel];
+        }
     }
 
     public void EnableDelay(KeyLabel keyLabel)
     {
         ControllerKey controllerKey = controllerKeyMap[keyLabel.ToString()];
         controllerKey.delayEnabled = true;
+        if (controllerKey.slider != null)
+        {
+            controllerKey.slider.gameObject.SetActive(true);
+        }
     }
 }
 
@@ -137,6 +169,7 @@ public class ControllerKey
     public KeyLabel keyLabel;
     public KeyCode keyCode;
     public bool delayEnabled;
+    public Slider slider;
 
     [HideInInspector]
     public Vector3 direction;
