@@ -32,10 +32,9 @@ public class FollowBehaviour : MonoBehaviour
         }
     }
 
-    private bool isAway()
+    public bool isAway()
     {
         Vector3 diff = target.position - transform.position;
-        print(diff.magnitude);
         return diff.magnitude >= proximityDistance;
     }
 }
