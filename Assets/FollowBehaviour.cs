@@ -7,7 +7,8 @@ public class FollowBehaviour : MonoBehaviour
     public UnityEngine.AI.NavMeshAgent agent { get; private set; }             // the navmesh agent required for the path finding
     public Transform target;                                    // target to aim for
 
-    public float proximityDistance = 10f;
+    public float[] proximityDistance;
+    public float[] followingSpeed;
 
     private void Start()
     {
@@ -16,7 +17,6 @@ public class FollowBehaviour : MonoBehaviour
         agent.updateRotation = false;
         agent.updatePosition = true;
     }
-
 
     private void Update()
     {
@@ -27,6 +27,8 @@ public class FollowBehaviour : MonoBehaviour
 
         if (target != null)
         {
+            int currentLevel = LevelManager.instance.currentLevel;
+            agent.speed = followingSpeed[currentLevel];
             agent.SetDestination(target.position);
             transform.LookAt(target);
         }
@@ -35,6 +37,7 @@ public class FollowBehaviour : MonoBehaviour
     public bool isAway()
     {
         Vector3 diff = target.position - transform.position;
-        return diff.magnitude >= proximityDistance;
+        int currentLevel = LevelManager.instance.currentLevel;
+        return diff.magnitude >= proximityDistance[currentLevel];
     }
 }
