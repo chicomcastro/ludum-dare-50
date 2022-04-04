@@ -12,11 +12,9 @@ public class Mover : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == this.tag)
+        if (other.tag == "Scenario" || other.tag == "Player" || other.tag == "Enemy")
         {
-            return;
+            Destroy(gameObject, destroyDelay);
         }
-
-        Destroy(gameObject, destroyDelay);
     }
 }
