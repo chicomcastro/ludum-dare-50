@@ -20,10 +20,15 @@ public class BulletSpawn : MonoBehaviour
 
     private void SpawnBullet()
     {
-        if (!followBehaviour.isAway())
+        if (!followBehaviour.isAway() && CanShoot())
         {
             Shoot();
         }
+    }
+
+    private bool CanShoot()
+    {
+        return !LevelManager.instance.IsInInterval();
     }
 
     private void Shoot()

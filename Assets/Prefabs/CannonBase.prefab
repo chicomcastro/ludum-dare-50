@@ -219,8 +219,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7067775105496255710, guid: 56b4816f5d198044c90ffbcf95cc03ff,
     type: 3}
   spawnSpot: {fileID: 8068314878203805100}
-  initialDelay: 1
-  shootPeriod: 1
+  initialDelay: 5
+  shootPeriod: 2
 --- !u!114 &2007758680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  proximityDistance: 10
+  proximityDistance: 15
 --- !u!195 &2007758679
 NavMeshAgent:
   m_ObjectHideFlags: 0

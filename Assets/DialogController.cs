@@ -26,6 +26,8 @@ public class DialogController : MonoBehaviour
     {
         int dialogLength = dialogs[currentDialogIndex].Length;
         currentShowingText.text = "";
+        print(GetCurrentLevel());
+        print(currentDialogIndex);
         for (int i = 0; i < dialogLength; i++)
         {
             currentShowingText.text += dialogs[currentDialogIndex][i];
@@ -36,17 +38,30 @@ public class DialogController : MonoBehaviour
 
     private void Update()
     {
+        if (!LevelManager.instance.IsInInterval())
+        {
+            return;
+        }
+
+        int currentLevel = GetCurrentLevel();
+
+        if (currentLevel == 1 && !dialogPanel.activeInHierarchy)
+        {
+            dialogPanel.SetActive(true);
+            StartCoroutine("ShowCurrentDialog");
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (finishCurrentDialog)
             {
                 finishCurrentDialog = false;
                 currentDialogIndex = Mathf.Min(currentDialogIndex + 1, dialogs.Length - 1);
-
-                int currentLevel = GetCurrentLevel();
                 if (currentDialogIndex > levelDialogs[currentLevel].endIndex)
                 {
+                    currentDialogIndex++;
                     dialogPanel.SetActive(false);
+                    LevelManager.instance.FinishInterval(true);
                 }
                 else
                 {
@@ -54,7 +69,6 @@ public class DialogController : MonoBehaviour
                 }
                 return;
             }
-            print("Skipping dialog");
             StopCoroutine("ShowCurrentDialog");
             currentShowingText.text = dialogs[currentDialogIndex];
             finishCurrentDialog = true;
@@ -63,7 +77,7 @@ public class DialogController : MonoBehaviour
 
     private int GetCurrentLevel()
     {
-        return 0;
+        return LevelManager.instance.currentLevel;
     }
 }
 
