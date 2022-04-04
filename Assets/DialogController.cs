@@ -44,8 +44,12 @@ public class DialogController : MonoBehaviour
         }
 
         int currentLevel = GetCurrentLevel();
+        if (currentLevel >= GetMaxLevel())
+        {
+            return;
+        }
 
-        if (currentLevel == 1 && !dialogPanel.activeInHierarchy)
+        if (!dialogPanel.activeInHierarchy)
         {
             dialogPanel.SetActive(true);
             StartCoroutine("ShowCurrentDialog");
@@ -57,6 +61,7 @@ public class DialogController : MonoBehaviour
             {
                 finishCurrentDialog = false;
                 currentDialogIndex = Mathf.Min(currentDialogIndex + 1, dialogs.Length - 1);
+
                 if (currentDialogIndex > levelDialogs[currentLevel].endIndex)
                 {
                     currentDialogIndex++;
@@ -78,6 +83,11 @@ public class DialogController : MonoBehaviour
     private int GetCurrentLevel()
     {
         return LevelManager.instance.currentLevel;
+    }
+
+    private int GetMaxLevel()
+    {
+        return LevelManager.instance.maxLevel;
     }
 }
 

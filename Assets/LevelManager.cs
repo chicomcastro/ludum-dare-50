@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class LevelManager : MonoBehaviour
 {
     public int currentLevel;
+    public int maxLevel;
+    public float levelDuration = 10f;
 
     public static LevelManager instance;
     public PlayerMovement playerMovement;
@@ -32,15 +34,29 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator Level1()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(levelDuration);
         StartInterval();
     }
 
     private IEnumerator Level2()
     {
         playerMovement.EnableDelay(KeyLabel.right);
-        yield return new WaitForSeconds(30f);
+        yield return new WaitForSeconds(levelDuration);
         StartInterval();
+    }
+
+    private IEnumerator Level3()
+    {
+        playerMovement.EnableDelay(KeyLabel.up);
+        yield return new WaitForSeconds(levelDuration);
+        StartInterval();
+    }
+
+    private IEnumerator Level4()
+    {
+        playerMovement.EnableDelay(KeyLabel.left);
+        playerMovement.EnableDelay(KeyLabel.down);
+        yield return new WaitForSeconds(levelDuration);
     }
 
     public void StartInterval()

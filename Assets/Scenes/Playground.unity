@@ -335,7 +335,10 @@ MonoBehaviour:
   - Are you delaying your death?
   - Then let's play your game
   - We're gonna see what happens when I delay your movements too
-  - FINISH
+  - Am I a joke to you?
+  - Let me keep delaying you...
+  - You leave me no choice
+  - Whatever, do what you want... until you can't
   currentShowingText: {fileID: 1308463584}
   textSpeed: 25
   dialogPanel: {fileID: 1989541402}
@@ -344,6 +347,12 @@ MonoBehaviour:
     endIndex: 4
   - startIndex: 5
     endIndex: 8
+  - startIndex: 9
+    endIndex: 10
+  - startIndex: 11
+    endIndex: 11
+  - startIndex: 12
+    endIndex: 12
 --- !u!114 &415608784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,6 +366,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevel: 0
+  maxLevel: 4
+  levelDuration: 1
   playerMovement: {fileID: 200133937}
   levelText: {fileID: 1143600129}
 --- !u!1001 &423276962
@@ -2381,22 +2392,6 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 200133932}
-    - target: {fileID: 2007758680, guid: a44425b5dac4f994cb3006f1fec3fc58, type: 3}
-      propertyPath: followingSpeed.Array.data[1]
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2007758680, guid: a44425b5dac4f994cb3006f1fec3fc58, type: 3}
-      propertyPath: followingSpeed.Array.data[2]
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2007758680, guid: a44425b5dac4f994cb3006f1fec3fc58, type: 3}
-      propertyPath: followingSpeed.Array.data[3]
-      value: 4.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2007758680, guid: a44425b5dac4f994cb3006f1fec3fc58, type: 3}
-      propertyPath: followingSpeed.Array.data[4]
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 8068314877562402796, guid: a44425b5dac4f994cb3006f1fec3fc58,
         type: 3}
       propertyPath: m_LocalPosition.x
