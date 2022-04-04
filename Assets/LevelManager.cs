@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
 
     public static LevelManager instance;
     public PlayerMovement playerMovement;
+    public GameObject delayStatusPanel;
 
     private bool isInInterval = true;
 
@@ -25,6 +26,7 @@ public class LevelManager : MonoBehaviour
     {
         currentLevel = 0;
         StartCoroutine("Level0");
+        delayStatusPanel.SetActive(false);
     }
 
     private IEnumerator Level0()
@@ -40,6 +42,7 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator Level2()
     {
+        delayStatusPanel.SetActive(true);
         playerMovement.EnableDelay(KeyLabel.right);
         yield return new WaitForSeconds(levelDuration);
         StartInterval();
