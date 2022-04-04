@@ -10,37 +10,37 @@ PrefabInstance:
     - target: {fileID: 8068314877562402796, guid: a44425b5dac4f994cb3006f1fec3fc58,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.68
+      value: 0.00000001922492
       objectReference: {fileID: 0}
     - target: {fileID: 8068314877562402796, guid: a44425b5dac4f994cb3006f1fec3fc58,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.73554903
+      value: 2.5631838
       objectReference: {fileID: 0}
     - target: {fileID: 8068314877562402796, guid: a44425b5dac4f994cb3006f1fec3fc58,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.5117185
+      value: 2.24
       objectReference: {fileID: 0}
     - target: {fileID: 8068314877562402796, guid: a44425b5dac4f994cb3006f1fec3fc58,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.00000006238465
+      value: -0.00000011920929
       objectReference: {fileID: 0}
     - target: {fileID: 8068314877562402796, guid: a44425b5dac4f994cb3006f1fec3fc58,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000007480005
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8068314877562402796, guid: a44425b5dac4f994cb3006f1fec3fc58,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000135041756
+      value: 0.00000015149533
       objectReference: {fileID: 0}
     - target: {fileID: 8068314877562402796, guid: a44425b5dac4f994cb3006f1fec3fc58,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -0.00000012816582
       objectReference: {fileID: 0}
     - target: {fileID: 8068314877562402796, guid: a44425b5dac4f994cb3006f1fec3fc58,
         type: 3}
@@ -55,7 +55,7 @@ PrefabInstance:
     - target: {fileID: 8068314877562402796, guid: a44425b5dac4f994cb3006f1fec3fc58,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 8068314877562402796, guid: a44425b5dac4f994cb3006f1fec3fc58,
         type: 3}
@@ -70,7 +70,7 @@ PrefabInstance:
     - target: {fileID: 8068314877562402801, guid: a44425b5dac4f994cb3006f1fec3fc58,
         type: 3}
       propertyPath: m_Name
-      value: CannonLight Variant
+      value: CannonLight
       objectReference: {fileID: 0}
     - target: {fileID: 8068314877562402802, guid: a44425b5dac4f994cb3006f1fec3fc58,
         type: 3}

@@ -19,7 +19,7 @@ public class BulletSpawn : MonoBehaviour
 
     private void SpawnBullet()
     {
-        GameObject gamo = Instantiate(bulletPrefab, spawnSpot.position, spawnSpot.rotation, transform);
+        GameObject gamo = Instantiate(bulletPrefab, spawnSpot.position, spawnSpot.rotation);
         Destroy(gamo, 30f);
     }
 }
