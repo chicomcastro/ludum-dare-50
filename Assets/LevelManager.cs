@@ -8,6 +8,8 @@ public class LevelManager : MonoBehaviour
     public int currentLevel;
 
     public static LevelManager instance;
+    public PlayerMovement playerMovement;
+
     private bool isInInterval = true;
 
     public Text levelText;
@@ -31,6 +33,13 @@ public class LevelManager : MonoBehaviour
     private IEnumerator Level1()
     {
         yield return new WaitForSeconds(10f);
+        StartInterval();
+    }
+
+    private IEnumerator Level2()
+    {
+        playerMovement.EnableDelay(KeyLabel.right);
+        yield return new WaitForSeconds(30f);
         StartInterval();
     }
 
