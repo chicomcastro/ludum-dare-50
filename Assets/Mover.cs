@@ -12,9 +12,6 @@ public class Mover : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
-        {
-            Destroy(gameObject, destroyDelay);
-        }
+        Destroy(gameObject, destroyDelay);
     }
 }
