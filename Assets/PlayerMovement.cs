@@ -162,7 +162,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool CanMove()
     {
-        return !LevelManager.instance.IsInInterval() && !GetComponent<LifeManager>().isDead;
+        return !LevelManager.instance.IsInInterval() && !LifeManager.instance.isDead;
     }
 }
 

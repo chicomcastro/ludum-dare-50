@@ -7,6 +7,13 @@ public class LifeManager : MonoBehaviour
 
     public bool godMode = false;
 
+    public static LifeManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Start()
     {
         gameOverPanel.SetActive(false);
@@ -20,7 +27,10 @@ public class LifeManager : MonoBehaviour
             {
                 return;
             }
-            GameOver();
+            if (!isDead)
+            {
+                GameOver();
+            }
         }
     }
 
@@ -28,5 +38,6 @@ public class LifeManager : MonoBehaviour
     {
         gameOverPanel.SetActive(true);
         isDead = true;
+        LevelManager.instance.StartInterval();
     }
 }
