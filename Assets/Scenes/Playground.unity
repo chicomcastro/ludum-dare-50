@@ -263,8 +263,8 @@ MonoBehaviour:
     keyCode: 304
     delayEnabled: 0
     direction: {x: 0, y: 0, z: 0}
-  speed: 8
-  enableSprint: 1
+  speed: 6
+  enableSprint: 0
   sprint: 12
   enableDelay: 1
   delay: 1
@@ -357,6 +357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevel: 0
+  playerMovement: {fileID: 200133937}
   levelText: {fileID: 1143600129}
 --- !u!1001 &423276962
 PrefabInstance:
@@ -2380,6 +2381,22 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 200133932}
+    - target: {fileID: 2007758680, guid: a44425b5dac4f994cb3006f1fec3fc58, type: 3}
+      propertyPath: followingSpeed.Array.data[1]
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2007758680, guid: a44425b5dac4f994cb3006f1fec3fc58, type: 3}
+      propertyPath: followingSpeed.Array.data[2]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2007758680, guid: a44425b5dac4f994cb3006f1fec3fc58, type: 3}
+      propertyPath: followingSpeed.Array.data[3]
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2007758680, guid: a44425b5dac4f994cb3006f1fec3fc58, type: 3}
+      propertyPath: followingSpeed.Array.data[4]
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8068314877562402796, guid: a44425b5dac4f994cb3006f1fec3fc58,
         type: 3}
       propertyPath: m_LocalPosition.x

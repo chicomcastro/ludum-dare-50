@@ -234,7 +234,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  proximityDistance: 15
+  proximityDistance:
+  - 15
+  - 15
+  - 20
+  - 25
+  - 50
+  followingSpeed:
+  - 3.5
+  - 3.5
+  - 4
+  - 4.5
+  - 5
 --- !u!195 &2007758679
 NavMeshAgent:
   m_ObjectHideFlags: 0
