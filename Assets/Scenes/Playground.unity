@@ -838,6 +838,7 @@ GameObject:
   - component: {fileID: 415608782}
   - component: {fileID: 415608783}
   - component: {fileID: 415608784}
+  - component: {fileID: 415608785}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -917,6 +918,18 @@ MonoBehaviour:
   playerMovement: {fileID: 200133937}
   delayStatusPanel: {fileID: 1212099329}
   levelText: {fileID: 1143600129}
+--- !u!114 &415608785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415608781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70464f0df7c14124c9e76994c9f789f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &423276962
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2759,7 +2772,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1164698180}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 415608785}
+        m_MethodName: ReloadCurrentScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1164698180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3309,7 +3333,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1274388701}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 415608785}
+        m_MethodName: LoadSceneByName
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Menu
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1274388701
 MonoBehaviour:
   m_ObjectHideFlags: 0
