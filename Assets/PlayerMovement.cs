@@ -121,6 +121,12 @@ public class PlayerMovement : MonoBehaviour
         }
         delayLevel[keyLabel] = Mathf.Min(1f, delayLevel[keyLabel] + Time.deltaTime * chargeSpeed);
     }
+
+    public void EnableDelay(KeyLabel keyLabel)
+    {
+        ControllerKey controllerKey = controllerKeyMap[keyLabel.ToString()];
+        controllerKey.delayEnabled = true;
+    }
 }
 
 public enum KeyLabel { up, left, down, right, sprint };
