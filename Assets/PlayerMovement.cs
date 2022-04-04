@@ -112,15 +112,18 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 velocityDir = Vector3.zero;
         float velocityMag = speed;
-        velocityDir = HandleMovement(velocityDir);
-        velocityMag = HandleSprint(velocityMag);
+        if (CanMove())
+        {
+            velocityDir = HandleMovement(velocityDir);
+            velocityMag = HandleSprint(velocityMag);
+        }
         targetVelocity = velocityDir;
         targetSpeed = velocityMag;
     }
 
     private void HandleDelay()
     {
-        if (!enableDelay)
+        if (!enableDelay || !CanMove())
         {
             return;
         }
@@ -155,6 +158,11 @@ public class PlayerMovement : MonoBehaviour
         {
             controllerKey.slider.gameObject.SetActive(true);
         }
+    }
+
+    private bool CanMove()
+    {
+        return !LevelManager.instance.IsInInterval() && !GetComponent<LifeManager>().isDead;
     }
 }
 
