@@ -62,7 +62,6 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        //targetVelocity = Vector3.zero;
         rb.velocity = new Vector3(targetVelocity.x, 0, targetVelocity.z).normalized * targetSpeed + Vector3.up * rb.velocity.y;
     }
 
