@@ -38,7 +38,7 @@ public class DialogController : MonoBehaviour
 
     private void Update()
     {
-        if (!LevelManager.instance.IsInInterval() || LifeManager.instance.isDead)
+        if (!LevelManager.instance.IsInInterval() || LifeManager.instance.isDead || PauseController.instance.isPaused)
         {
             return;
         }
