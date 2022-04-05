@@ -12,6 +12,11 @@ public class Mover : MonoBehaviour
 
     private void Update()
     {
+        if (LevelManager.instance.IsInInterval())
+        {
+            Destroy(this.gameObject);
+        }
+
         if (PauseController.instance.isPaused)
         {
             gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;

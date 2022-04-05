@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
     public static LevelManager instance;
     public PlayerMovement playerMovement;
     public GameObject delayStatusPanel;
+    public Text countDownText;
 
     private bool isInInterval = true;
 
@@ -62,6 +63,15 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(levelDuration);
     }
 
+    private IEnumerator CountDown()
+    {
+        for (int i = 0; i <= levelDuration; i++)
+        {
+            countDownText.text = "Time left: " + (levelDuration - i);
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
     public void StartInterval()
     {
         print("Start new interval");
@@ -83,6 +93,7 @@ public class LevelManager : MonoBehaviour
         if (startCoroutine)
         {
             StartCoroutine("Level" + (currentLevel).ToString());
+            StartCoroutine("CountDown");
         }
     }
 

@@ -920,6 +920,7 @@ MonoBehaviour:
   levelDuration: 10
   playerMovement: {fileID: 200133937}
   delayStatusPanel: {fileID: 1212099329}
+  countDownText: {fileID: 908054174}
   levelText: {fileID: 1143600129}
 --- !u!114 &415608785
 MonoBehaviour:
