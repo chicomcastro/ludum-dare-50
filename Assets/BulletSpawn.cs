@@ -28,7 +28,7 @@ public class BulletSpawn : MonoBehaviour
 
     private bool CanShoot()
     {
-        return !LevelManager.instance.IsInInterval();
+        return !LevelManager.instance.IsInInterval() && !PauseController.instance.isPaused;
     }
 
     private void Shoot()

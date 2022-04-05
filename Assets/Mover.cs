@@ -10,6 +10,18 @@ public class Mover : MonoBehaviour
         gameObject.GetComponent<Rigidbody>().velocity = speed * transform.forward;
     }
 
+    private void Update()
+    {
+        if (PauseController.instance.isPaused)
+        {
+            gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
+        else
+        {
+            gameObject.GetComponent<Rigidbody>().velocity = speed * transform.forward;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Scenario" || other.tag == "Player" || other.tag == "Enemy")

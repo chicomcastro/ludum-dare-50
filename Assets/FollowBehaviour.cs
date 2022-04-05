@@ -28,7 +28,7 @@ public class FollowBehaviour : MonoBehaviour
         if (target != null)
         {
             int currentLevel = LevelManager.instance.currentLevel;
-            agent.speed = followingSpeed[currentLevel];
+            agent.speed = PauseController.instance.isPaused ? 0 : followingSpeed[currentLevel];
             agent.SetDestination(target.position);
             transform.LookAt(target);
         }
