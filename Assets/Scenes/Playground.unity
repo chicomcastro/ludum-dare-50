@@ -624,6 +624,9 @@ MonoBehaviour:
   isDead: 0
   gameOverPanel: {fileID: 261626858}
   godMode: 0
+  destroyAnimation: {fileID: 2434353655605695674, guid: 9c5f28c2cdafc4b408582a60f3a13fc5,
+    type: 3}
+  playerMesh: {fileID: 200133935}
 --- !u!1 &261626858
 GameObject:
   m_ObjectHideFlags: 0

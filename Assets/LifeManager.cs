@@ -8,6 +8,8 @@ public class LifeManager : MonoBehaviour
     public bool godMode = false;
 
     public static LifeManager instance;
+    public GameObject destroyAnimation;
+    public MeshRenderer playerMesh; 
 
     private void Awake()
     {
@@ -39,5 +41,7 @@ public class LifeManager : MonoBehaviour
         gameOverPanel.SetActive(true);
         isDead = true;
         LevelManager.instance.StartInterval();
+        Instantiate(destroyAnimation, transform.position, Quaternion.identity, transform);
+        playerMesh.enabled = false;
     }
 }
