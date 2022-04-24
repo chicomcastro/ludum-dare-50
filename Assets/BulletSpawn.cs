@@ -11,18 +11,24 @@ public class BulletSpawn : MonoBehaviour
     public float shootPeriod = 0.5f;
 
     private FollowBehaviour followBehaviour;
+    public float[] bulletSpeeds;
 
     void Start()
     {
         followBehaviour = GetComponent<FollowBehaviour>();
-        InvokeRepeating("SpawnBullet", initialDelay, shootPeriod);
+        StartCoroutine("SpawnBullet");
     }
 
-    private void SpawnBullet()
+    private IEnumerator SpawnBullet()
     {
-        if (!followBehaviour.isAway() && CanShoot())
+        yield return new WaitForSeconds(initialDelay);
+        while (true)
         {
-            Shoot();
+            if (!followBehaviour.isAway() && CanShoot())
+            {
+                Shoot();
+            }
+            yield return new WaitForSeconds(shootPeriod);
         }
     }
 
@@ -34,6 +40,14 @@ public class BulletSpawn : MonoBehaviour
     private void Shoot()
     {
         GameObject gamo = Instantiate(bulletPrefab, spawnSpot.position, spawnSpot.rotation);
+
+        int currentLevel = LevelManager.instance.currentLevel;
+        if (bulletSpeeds.Length > 0)
+        {
+            float currentLevelBulletSpeed = currentLevel < bulletSpeeds.Length ? bulletSpeeds[currentLevel] : bulletSpeeds[bulletSpeeds.Length - 1];
+            gamo.GetComponent<Mover>().speed = currentLevelBulletSpeed;
+        }
+
         Destroy(gamo, 30f);
     }
 }

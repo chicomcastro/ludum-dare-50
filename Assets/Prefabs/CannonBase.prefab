@@ -242,10 +242,10 @@ MonoBehaviour:
   - 50
   followingSpeed:
   - 3.5
-  - 3.5
   - 4
   - 4.5
   - 5
+  - 5.5
 --- !u!195 &2007758679
 NavMeshAgent:
   m_ObjectHideFlags: 0
