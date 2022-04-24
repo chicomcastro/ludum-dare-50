@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +19,8 @@ public class LevelManager : MonoBehaviour
 
     public Text levelText;
 
+    public GameObject fallingBoxes;
+
     private void Awake()
     {
         instance = this;
@@ -28,6 +31,7 @@ public class LevelManager : MonoBehaviour
         currentLevel = 0;
         StartCoroutine("Level0");
         delayStatusPanel.SetActive(false);
+        fallingBoxes.SetActive(false);
     }
 
     private IEnumerator Level0()
@@ -62,6 +66,23 @@ public class LevelManager : MonoBehaviour
         playerMovement.EnableDelay(KeyLabel.down);
         yield return new WaitForSeconds(levelDuration + 1.5f);
         countDownText.text = "Time left: until you die";
+        StartCoroutine("FallingBoxesRoutine");
+    }
+
+    private IEnumerator FallingBoxesRoutine()
+    {
+        Rigidbody[] boxes = fallingBoxes.GetComponentsInChildren<Rigidbody>();
+        boxes.ToList().ForEach((rigidbody) =>
+        {
+            rigidbody.useGravity = false;
+        });
+        fallingBoxes.SetActive(true);
+        for (int i = 0; i < boxes.Length; i++)
+        {
+            Rigidbody rigidbody = boxes[i];
+            rigidbody.useGravity = true;
+            yield return new WaitForSeconds(1f);
+        }
     }
 
     private IEnumerator CountDown()

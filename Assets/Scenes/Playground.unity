@@ -1203,6 +1203,7 @@ MonoBehaviour:
   delayStatusPanel: {fileID: 1212099329}
   countDownText: {fileID: 908054174}
   levelText: {fileID: 1143600129}
+  fallingBoxes: {fileID: 810568019}
 --- !u!114 &415608785
 MonoBehaviour:
   m_ObjectHideFlags: 0
