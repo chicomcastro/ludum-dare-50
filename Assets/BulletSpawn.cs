@@ -24,7 +24,7 @@ public class BulletSpawn : MonoBehaviour
         yield return new WaitForSeconds(initialDelay);
         while (true)
         {
-            if (!followBehaviour.isAway() && CanShoot())
+            if (!followBehaviour.IsAway() && CanShoot())
             {
                 Shoot();
             }

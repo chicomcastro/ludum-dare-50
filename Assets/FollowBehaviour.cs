@@ -20,7 +20,7 @@ public class FollowBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (isAway())
+        if (IsAway())
         {
             return;
         }
@@ -29,15 +29,20 @@ public class FollowBehaviour : MonoBehaviour
         {
             int currentLevel = LevelManager.instance.currentLevel;
             agent.speed = PauseController.instance.isPaused ? 0 : followingSpeed[currentLevel];
-            agent.SetDestination(target.position);
-            transform.LookAt(target);
+            SetTarget();
         }
     }
 
-    public bool isAway()
+    public bool IsAway()
     {
         Vector3 diff = target.position - transform.position;
         int currentLevel = LevelManager.instance.currentLevel;
         return diff.magnitude >= proximityDistance[currentLevel];
+    }
+
+    public virtual void SetTarget()
+    {
+        agent.SetDestination(target.position);
+        transform.LookAt(target);
     }
 }
