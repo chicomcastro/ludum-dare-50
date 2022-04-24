@@ -60,7 +60,8 @@ public class LevelManager : MonoBehaviour
     {
         playerMovement.EnableDelay(KeyLabel.left);
         playerMovement.EnableDelay(KeyLabel.down);
-        yield return new WaitForSeconds(levelDuration);
+        yield return new WaitForSeconds(levelDuration + 1.5f);
+        countDownText.text = "Time left: until you die";
     }
 
     private IEnumerator CountDown()
