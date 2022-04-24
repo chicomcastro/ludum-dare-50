@@ -26,8 +26,6 @@ public class DialogController : MonoBehaviour
     {
         int dialogLength = dialogs[currentDialogIndex].Length;
         currentShowingText.text = "";
-        print(GetCurrentLevel());
-        print(currentDialogIndex);
         for (int i = 0; i < dialogLength; i++)
         {
             currentShowingText.text += dialogs[currentDialogIndex][i];
