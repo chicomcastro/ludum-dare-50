@@ -9,6 +9,8 @@ public class ScoreManager : MonoBehaviour
 
     public float multiplyFactor = 500f;
 
+    public PlayerMovement player;
+
     void Start()
     {
         score = 0f;    
@@ -28,7 +30,7 @@ public class ScoreManager : MonoBehaviour
 
         if (!LevelManager.instance.IsInInterval())
         {
-            score += (Time.deltaTime * multiplyFactor);
+            score += (Time.deltaTime * multiplyFactor * player.rb.velocity.magnitude);
         }
     }
 }
