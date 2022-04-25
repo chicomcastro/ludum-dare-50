@@ -47,8 +47,6 @@ public class LogManager : MonoBehaviour
         }
         formData.AddField("version", "1.1.0");
 
-
-        //UnityWebRequest www = UnityWebRequest.Post("http://localhost:3000/v1/tracks", formData);
         UnityWebRequest www = UnityWebRequest.Post("https://game-logging.herokuapp.com/v1/tracks", formData);
 
         yield return www.SendWebRequest();
