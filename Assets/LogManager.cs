@@ -13,7 +13,16 @@ public class LogManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        DontDestroyOnLoad(this.gameObject);
+
+        if (instance != null)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
     }
 
     void Start()

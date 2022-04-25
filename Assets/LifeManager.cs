@@ -39,7 +39,7 @@ public class LifeManager : MonoBehaviour
     private void GameOver()
     {
         // TODO fix: passing event values is not working
-        LogManager.instance.Log("GAME_OVER", new { Score = ScoreManager.instance.score });
+        LogManager.instance.Log("GAME_OVER", ScoreManager.instance);
         gameOverPanel.SetActive(true);
         isDead = true;
         LevelManager.instance.StartInterval();
