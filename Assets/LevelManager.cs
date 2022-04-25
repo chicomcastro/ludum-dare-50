@@ -36,17 +36,20 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator Level0()
     {
+        LogManager.instance.Log("START_LEVEL_0");
         yield return new WaitUntil(() => currentLevel == 1);
     }
 
     private IEnumerator Level1()
     {
+        LogManager.instance.Log("START_LEVEL_1");
         yield return new WaitForSeconds(levelDuration);
         StartInterval();
     }
 
     private IEnumerator Level2()
     {
+        LogManager.instance.Log("START_LEVEL_2");
         delayStatusPanel.SetActive(true);
         playerMovement.EnableDelay(KeyLabel.right);
         yield return new WaitForSeconds(levelDuration);
@@ -55,6 +58,7 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator Level3()
     {
+        LogManager.instance.Log("START_LEVEL_3");
         playerMovement.EnableDelay(KeyLabel.up);
         yield return new WaitForSeconds(levelDuration);
         StartInterval();
@@ -62,6 +66,7 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator Level4()
     {
+        LogManager.instance.Log("START_LEVEL_4");
         playerMovement.EnableDelay(KeyLabel.left);
         playerMovement.EnableDelay(KeyLabel.down);
         yield return new WaitForSeconds(levelDuration + 1.5f);
@@ -71,6 +76,7 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator FallingBoxesRoutine()
     {
+        LogManager.instance.Log("START_FALLING_BOXES");
         Rigidbody[] boxes = fallingBoxes.GetComponentsInChildren<Rigidbody>();
         boxes.ToList().ForEach((rigidbody) =>
         {
@@ -83,6 +89,7 @@ public class LevelManager : MonoBehaviour
             rigidbody.useGravity = true;
             yield return new WaitForSeconds(1f);
         }
+        LogManager.instance.Log("END_FALLING_BOXES");
     }
 
     private IEnumerator CountDown()

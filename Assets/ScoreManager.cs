@@ -11,6 +11,13 @@ public class ScoreManager : MonoBehaviour
 
     public PlayerMovement player;
 
+    public static ScoreManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     void Start()
     {
         score = 0f;    

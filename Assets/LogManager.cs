@@ -7,6 +7,8 @@ public class LogManager : MonoBehaviour
 {
     private string uniqueId;
 
+    public bool enableLogging = true;
+
     public static LogManager instance;
 
     private void Awake()
@@ -25,8 +27,12 @@ public class LogManager : MonoBehaviour
 
     public void Log(string eventName, object eventData = null)
     {
-        print(eventName);
-        StartCoroutine(SendLog(eventName, eventData));
+        if (enableLogging)
+        {
+            print(eventName);
+            print(JsonUtility.ToJson(eventData));
+            StartCoroutine(SendLog(eventName, eventData));
+        }
     }
 
     IEnumerator SendLog(string eventName, object eventData)
@@ -34,6 +40,7 @@ public class LogManager : MonoBehaviour
         WWWForm formData = new WWWForm();
         formData.AddField("application", "sabotage");
         formData.AddField("event", eventName);
+        formData.AddField("anonymousId", uniqueId);
         if (eventData != null)
         {
             formData.AddField("json_data", JsonUtility.ToJson(eventData));
@@ -41,8 +48,9 @@ public class LogManager : MonoBehaviour
         formData.AddField("version", "1.1.0");
 
 
+        //UnityWebRequest www = UnityWebRequest.Post("http://localhost:3000/v1/tracks", formData);
         UnityWebRequest www = UnityWebRequest.Post("https://game-logging.herokuapp.com/v1/tracks", formData);
-    
+
         yield return www.SendWebRequest();
 
         if (www.isNetworkError)

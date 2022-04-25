@@ -667,7 +667,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDead: 0
   gameOverPanel: {fileID: 261626858}
-  godMode: 1
+  godMode: 0
   destroyAnimation: {fileID: 2434353655605695674, guid: 9c5f28c2cdafc4b408582a60f3a13fc5,
     type: 3}
   playerMesh: {fileID: 200133935}
@@ -1123,6 +1123,7 @@ GameObject:
   - component: {fileID: 415608785}
   - component: {fileID: 415608786}
   - component: {fileID: 415608787}
+  - component: {fileID: 415608788}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -1198,7 +1199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentLevel: 0
   maxLevel: 4
-  levelDuration: 1
+  levelDuration: 10
   playerMovement: {fileID: 200133937}
   delayStatusPanel: {fileID: 1212099329}
   countDownText: {fileID: 908054174}
@@ -1249,6 +1250,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 1047718003}
   isPaused: 0
+--- !u!114 &415608788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415608781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0c9601219536774f93e9ca27c5edb45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableLogging: 0
 --- !u!1 &417348027 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 2b127815fd0f2074eae3a0c6a4786d0b,
